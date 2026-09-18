@@ -1,0 +1,272 @@
+:root {
+  --ivory: #fbf6ec;
+  --gold: #c9a24b;
+  --gold-soft: #e7d3a0;
+  --ink: #241a12;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: "Jost", sans-serif;
+  color: var(--ivory);
+  background: var(--ink);
+  overflow-x: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 901px) {
+  .page {
+    flex-direction: row;
+  }
+}
+
+/* ---------- Video panel ---------- */
+
+.video-panel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 85svh;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+@media (min-width: 901px) {
+  .video-panel {
+    width: 50%;
+    aspect-ratio: auto;
+    height: 100dvh;
+    max-height: none;
+  }
+}
+
+.video-panel video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--ink);
+}
+
+/* Fixed to the viewport (not absolute to the panel) so the buttons stay
+   in the page's bottom-right corner at any scroll position, on both
+   mobile and desktop. */
+.video-controls {
+  position: fixed;
+  z-index: 20;
+  bottom: 1.1rem;
+  right: 1.1rem;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.control-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(36, 26, 18, 0.55);
+  color: var(--gold-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(36, 26, 18, 0.75);
+  color: var(--gold);
+}
+
+.control-btn svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* The `hidden` attribute's UA default (display:none) is unreliable on
+   <svg> elements across browsers, so it's enforced explicitly here. */
+.control-btn svg[hidden] {
+  display: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem clamp(2.5rem, 8vh, 4.5rem);
+  text-align: center;
+}
+
+.hero__tagline {
+  font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.1rem;
+  font-weight: 400;
+}
+
+.hero__names {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.hero__amp {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--gold);
+  margin: 0.15em 0;
+}
+
+.hero__divider {
+  width: 64px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.4rem auto;
+  opacity: 0.75;
+}
+
+.hero__date {
+  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: var(--ivory);
+}
+
+.hero__venue {
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  letter-spacing: 0.06em;
+  color: var(--gold-soft);
+  margin-top: 0.35rem;
+  font-weight: 300;
+}
+
+/* ---------- RSVP panel ---------- */
+
+.rsvp-panel {
+  width: 100%;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media (min-width: 901px) {
+  .rsvp-panel {
+    width: 50%;
+    height: 100dvh;
+    overflow-y: auto;
+  }
+}
+
+.rsvp-heading {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.rsvp-subtext {
+  text-align: center;
+  color: var(--gold-soft);
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 2.25rem;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.rsvp-field label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 0.4rem;
+}
+
+.rsvp-field input,
+.rsvp-field select,
+.rsvp-field textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 162, 75, 0.4);
+  color: var(--ivory);
+  padding: 0.7rem 0.85rem;
+  font-family: "Jost", sans-serif;
+  font-size: 0.95rem;
+  border-radius: 2px;
+  outline: none;
+}
+
+.rsvp-field input:focus,
+.rsvp-field select:focus,
+.rsvp-field textarea:focus {
+  border-color: var(--gold);
+}
+
+.rsvp-field textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.rsvp-submit {
+  margin-top: 0.25rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 2px;
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.rsvp-submit:hover {
+  opacity: 0.85;
+}
+
+.rsvp-success {
+  display: none;
+  text-align: center;
+  color: var(--gold-soft);
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}

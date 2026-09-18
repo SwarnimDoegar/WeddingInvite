@@ -1,0 +1,23 @@
+---
+interface Props {
+  tagline: string;
+  partnerA: string;
+  partnerB: string;
+  date: string;
+  venue: string;
+}
+
+const { tagline, partnerA, partnerB, date, venue } = Astro.props;
+---
+
+<div class="hero__content">
+  <p class="hero__tagline">{tagline}</p>
+  <h1 class="hero__names">
+    <span>{partnerA}</span>
+    <span class="hero__amp">&amp;</span>
+    <span>{partnerB}</span>
+  </h1>
+  <div class="hero__divider"></div>
+  <p class="hero__date">{date}</p>
+  <p class="hero__venue">{venue}</p>
+</div>

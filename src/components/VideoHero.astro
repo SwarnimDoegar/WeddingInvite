@@ -1,0 +1,68 @@
+---
+interface Props {
+  videoDesktop: string;
+  videoMobile: string;
+  poster: string;
+}
+
+const { videoDesktop, videoMobile, poster } = Astro.props;
+---
+
+<section class="video-panel" id="cover">
+  <video id="heroVideo" autoplay loop playsinline poster={poster}>
+    <source type="video/mp4" media="(min-width: 901px)" src={videoDesktop} />
+    <source type="video/mp4" src={videoMobile} />
+  </video>
+  <div class="video-controls">
+    <button
+      class="control-btn"
+      id="playToggle"
+      type="button"
+      aria-label="Pause video"
+    >
+      <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+        <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+      </svg>
+      <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" hidden>
+        <path d="M7 5v14l12-7z"></path>
+      </svg>
+    </button>
+    <button
+      class="control-btn"
+      id="soundToggle"
+      type="button"
+      aria-label="Mute video"
+    >
+      <svg
+        class="icon-unmuted"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"
+        ></path>
+        <path d="M16.5 8.5a5 5 0 0 1 0 7"></path>
+        <path d="M19 6a8.5 8.5 0 0 1 0 12"></path>
+      </svg>
+      <svg
+        class="icon-muted"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        hidden
+      >
+        <path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none"
+        ></path>
+        <path d="M16 9l5 6"></path>
+        <path d="M21 9l-5 6"></path>
+      </svg>
+    </button>
+  </div>
+</section>

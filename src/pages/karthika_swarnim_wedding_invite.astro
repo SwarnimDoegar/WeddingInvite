@@ -1,0 +1,35 @@
+---
+import InviteLayout from "../layouts/InviteLayout.astro";
+import VideoHero from "../components/VideoHero.astro";
+import CoupleHeader from "../components/CoupleHeader.astro";
+import RsvpForm from "../components/RsvpForm.astro";
+
+const videoBase =
+  "https://ik.imagekit.io/pwliscd3n/minraws/Dummy/karthika_swarnim_wedding_invite.mp4";
+---
+
+<InviteLayout
+  title="Karthika & Swarnim | 6th December"
+  description="Together with our families, we invite you to celebrate the wedding of Karthika & Swarnim — 6th December, Thiruvananthapuram (Trivandrum)."
+  ogTitle="Karthika & Swarnim's Wedding Invitation"
+  ogDescription="Together with our families, we invite you to celebrate our wedding — 6th December, Thiruvananthapuram (Trivandrum)"
+  ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-2,w-1080`}
+  ogVideo={`${videoBase}?tr=so-0,du-15,w-720,h-1280,q-70,f-mp4,vc-h264,ac-aac`}
+  favicon="favicon-ks.ico"
+>
+  <VideoHero
+    videoDesktop={`${videoBase}?tr=w-1080,q-80,f-auto`}
+    videoMobile={`${videoBase}?tr=w-720,q-75,f-auto`}
+    poster={`${videoBase}/ik-thumbnail.jpg?tr=so-1,w-1080`}
+  />
+  <section class="rsvp-panel" id="rsvp">
+    <CoupleHeader
+      tagline="Together with our families, we invite you to celebrate our wedding"
+      partnerA="Karthika"
+      partnerB="Swarnim"
+      date="6th December"
+      venue="Thiruvananthapuram (Trivandrum)"
+    />
+    <RsvpForm />
+  </section>
+</InviteLayout>

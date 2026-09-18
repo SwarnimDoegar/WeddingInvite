@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+  ogVideo: string;
+  ogVideoWidth?: number;
+  ogVideoHeight?: number;
+  favicon: string;
+}
+
+const {
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  ogImage,
+  ogVideo,
+  ogVideoWidth = 720,
+  ogVideoHeight = 1280,
+  favicon,
+} = Astro.props;
+
+// BASE_URL can end with a slash ("/" in dev) or not ("/WeddingInvite" in
+// prod) depending on config, so strip any trailing slash before joining.
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#241A12" />
+    <link rel="icon" href={`${base}/assets/${favicon}`} sizes="any" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / WhatsApp link preview -->
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:video" content={ogVideo} />
+    <meta property="og:video:secure_url" content={ogVideo} />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content={ogVideoWidth} />
+    <meta property="og:video:height" content={ogVideoHeight} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href={`${base}/assets/hero.css`} />
+  </head>
+  <body>
+    <div class="page">
+      <slot />
+    </div>
+
+    <script is:inline src={`${base}/assets/hero.js`}></script>
+    <script is:inline src={`${base}/assets/rsvp.js`}></script>
+  </body>
+</html>

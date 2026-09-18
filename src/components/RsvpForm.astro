@@ -1,0 +1,48 @@
+---
+---
+
+<h2 class="rsvp-heading">RSVP</h2>
+<p class="rsvp-subtext">Kindly let us know if you'll be joining us</p>
+<form
+  class="rsvp-form"
+  id="rsvpForm"
+  method="POST"
+  action="https://docs.google.com/forms/d/e/1FAIpQLScUBejT9DEn5-8QC6GIHDfzw19M6rDWfdhg14HkW11pMFXBsA/formResponse"
+  target="hiddenRsvpFrame"
+>
+  <div class="rsvp-field">
+    <label for="rsvpName">Full Name</label>
+    <input type="text" id="rsvpName" name="entry.1612042241" required />
+  </div>
+  <div class="rsvp-field">
+    <label for="rsvpAttending">Are you attending?</label>
+    <select id="rsvpAttending" name="entry.1306605310" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Yes">Yes, I'll be there</option>
+      <option value="No">Sorry, can't make it</option>
+    </select>
+  </div>
+  <div class="rsvp-field">
+    <label for="rsvpGuests">Number of Guests (incl. you)</label>
+    <select id="rsvpGuests" name="entry.375165308" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4+</option>
+    </select>
+  </div>
+  <div class="rsvp-field">
+    <label for="rsvpPhone">Contact Number</label>
+    <input type="tel" id="rsvpPhone" name="entry.224335856" required />
+  </div>
+  <button type="submit" class="rsvp-submit">Send RSVP</button>
+</form>
+<p class="rsvp-success" id="rsvpSuccess">
+  Thank you! Your RSVP has been received.
+</p>
+<iframe
+  name="hiddenRsvpFrame"
+  id="hiddenRsvpFrame"
+  title="RSVP submission (hidden)"
+  style="display:none"
+></iframe>
