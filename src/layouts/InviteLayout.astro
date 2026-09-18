@@ -21,8 +21,10 @@ const {
   ogDescription,
   ogImage,
   ogVideo,
-  ogVideoWidth = 720,
-  ogVideoHeight = 1280,
+  // Must match what the og:video transform actually delivers (w-1080 on a
+  // 9:16 source), not the source's own dimensions.
+  ogVideoWidth = 1080,
+  ogVideoHeight = 1920,
   favicon,
   sealImage,
 } = Astro.props;
@@ -69,6 +71,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
     <div class="page">
       <slot />
+      <!-- Mobile only: stacked layout pushes the form below the video, so
+           this jumps down to it. A plain anchor rather than a scripted
+           button, so it still works if the script never runs. It lives
+           inside .page to inherit the gate's reveal — position: fixed
+           takes it out of the flex flow, so it doesn't disturb layout. -->
+      <a class="rsvp-cta" href="#rsvp">RSVP</a>
     </div>
 
     <script is:inline src={`${base}/assets/envelope.js`}></script>

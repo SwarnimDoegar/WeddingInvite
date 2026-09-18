@@ -13,6 +13,14 @@ html,
 body {
   height: 100%;
 }
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 body {
   font-family: "Jost", sans-serif;
   color: var(--ivory);
@@ -110,6 +118,44 @@ body {
    <svg> elements across browsers, so it's enforced explicitly here. */
 .control-btn svg[hidden] {
   display: none;
+}
+
+/* ---------- Mobile RSVP jump ---------- */
+
+.rsvp-cta {
+  position: fixed;
+  z-index: 20;
+  bottom: 1.1rem;
+  left: 1.1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Desktop sits the form beside the video, so there is nothing to jump to. */
+@media (min-width: 901px) {
+  .rsvp-cta {
+    display: none;
+  }
+}
+
+/* Cleared once the form is actually on screen, so the button never ends up
+   covering the fields it just scrolled to. */
+.rsvp-cta.is-hidden {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  pointer-events: none;
 }
 
 .hero__content {

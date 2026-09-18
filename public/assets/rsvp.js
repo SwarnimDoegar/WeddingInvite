@@ -25,3 +25,19 @@ if (hiddenRsvpFrame) {
     rsvpSuccess.style.display = "block";
   });
 }
+
+// The jump-to-RSVP button retires itself once the form is on screen. The
+// anchor still scrolls without this — it's only the fade-out that needs a
+// script, so an old browser just keeps a button that always works.
+const rsvpCta = document.querySelector(".rsvp-cta");
+const rsvpPanel = document.getElementById("rsvp");
+
+if (rsvpCta && rsvpPanel && "IntersectionObserver" in window) {
+  const ctaObserver = new IntersectionObserver(
+    ([entry]) => {
+      rsvpCta.classList.toggle("is-hidden", entry.isIntersecting);
+    },
+    { threshold: 0.2 }
+  );
+  ctaObserver.observe(rsvpPanel);
+}
