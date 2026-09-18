@@ -313,10 +313,22 @@ body.envelope-active {
 }
 
 .envelope {
+  /* Inherited by the flap, which delays its own animation by exactly this
+     long — keeping the two values from drifting apart. */
+  --envelope-lift-duration: 0.35s;
   position: relative;
   width: min(78vw, 320px);
   aspect-ratio: 3 / 2;
   perspective: 1200px;
+  transition: transform var(--envelope-lift-duration) ease-out;
+}
+
+/* The envelope grows toward the viewer on click, and that growth finishes
+   before the flap starts opening, so the two read as one sequence instead
+   of firing at once. Scaled past the viewport on purpose — the envelope
+   is meant to fill the screen as it hands off to the content behind it. */
+.envelope-gate.is-open .envelope {
+  transform: scale(2.2);
 }
 
 @media (min-width: 901px) {
@@ -351,6 +363,7 @@ body.envelope-active {
 
 .envelope-gate.is-open .envelope__flap-wrap {
   transform: rotateX(180deg);
+  transition-delay: var(--envelope-lift-duration);
 }
 
 .envelope__flap {
