@@ -4,16 +4,15 @@ import VideoHero from "../components/VideoHero.astro";
 import CoupleHeader from "../components/CoupleHeader.astro";
 import RsvpForm from "../components/RsvpForm.astro";
 
-// TODO: replace with groom-side reception video/thumbnail once uploaded to ImageKit
 const videoBase =
   "https://ik.imagekit.io/pwliscd3n/minraws/Dummy/swarnim_karthika_reception_invite.mp4";
 ---
 
 <InviteLayout
-  title="Swarnim & Karthika | Reception"
-  description="TODO: groom-side reception invite description (families, date, venue)."
+  title="Swarnim & Karthika | Reception, 13th December 2026"
+  description="Together with our families, we invite you to celebrate the wedding reception of Swarnim & Karthika — 13th December 2026, Zirakpur."
   ogTitle="Swarnim & Karthika's Reception"
-  ogDescription="TODO: groom-side reception invite description"
+  ogDescription="Together with our families, we invite you to an evening of celebration — 13th December 2026, Zirakpur"
   ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-1,w-1080`}
   ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac`}
   favicon="favicon-sk.ico"
@@ -26,18 +25,18 @@ const videoBase =
   />
   <section class="rsvp-panel" id="rsvp">
     <CoupleHeader
-      tagline="TODO: tagline for groom-side reception invite"
+      tagline="Together with our families, we invite you to an evening of celebration"
       partnerA="Swarnim"
       partnerB="Karthika"
-      date="TODO: date"
-      venue="TODO: venue"
+      date="13th December, 2026"
+      venue="Zirakpur"
     />
     <RsvpForm
-      formAction="TODO: groom-side reception Google Form /formResponse URL"
-      nameField="TODO: entry.XXXXXXX"
-      attendingField="TODO: entry.XXXXXXX"
-      guestsField="TODO: entry.XXXXXXX"
-      phoneField="TODO: entry.XXXXXXX"
+      formAction="https://docs.google.com/forms/d/e/1FAIpQLSeiHrPU7zsWpt9mS7_0VZXksjuzx2UaDaEdRPX0xI8ZUfGWEA/formResponse"
+      nameField="entry.1612042241"
+      attendingField="entry.1306605310"
+      guestsField="entry.375165308"
+      phoneField="entry.224335856"
     />
   </section>
 </InviteLayout>
