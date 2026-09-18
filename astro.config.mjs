@@ -1,8 +1,7 @@
 import { defineConfig } from "astro/config";
 
-const isProdBuild = process.env.NODE_ENV === "production";
-
 export default defineConfig({
-  site: "https://swarnimdoegar.github.io",
-  base: isProdBuild ? "/WeddingInvite" : "/",
+  // Served at the root of its own subdomain, so there's no project-page
+  // subpath any more — the base is "/" in both dev and prod.
+  site: "https://invite.swasthika.online",
 });
