@@ -343,6 +343,12 @@ body.envelope-active {
   background: rgba(251, 246, 236, 0.03);
   border: 1px solid var(--gold);
   border-radius: 4px;
+  /* A plain black shadow all but disappears against the near-black
+     backdrop, so a faint gold halo does the work of lifting the envelope
+     off it while the dark cast underneath gives it weight. */
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(201, 162, 75, 0.12);
 }
 
 /* The flap and the seal rotate together as one rigid piece, since the
@@ -373,6 +379,9 @@ body.envelope-active {
   border: 1px solid var(--gold);
   border-bottom: none;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
+  /* drop-shadow rather than box-shadow: clip-path clips a box-shadow away
+     with the rest of the box, so only a filter can trace the triangle. */
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.45));
 }
 
 .envelope__seal {
@@ -418,4 +427,12 @@ body.envelope-active {
   font-size: 0.8rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  transition: opacity 0.15s ease-out;
+}
+
+/* Unlike the flap, this carries no delay — it starts clearing the moment
+   the click lands, so the instruction is gone before the envelope has
+   visibly finished growing. */
+.envelope-gate.is-open .envelope__prompt {
+  opacity: 0;
 }
