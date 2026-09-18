@@ -34,18 +34,22 @@ function updatePlayIcon() {
   );
 }
 
-// Browsers block autoplay-with-sound unless the visitor already interacted
-// with the page. Try unmuted first; fall back to muted autoplay if blocked.
-heroVideo.muted = false;
-heroVideo
-  .play()
-  .catch(() => {
-    heroVideo.muted = true;
-    return heroVideo.play();
-  })
-  .catch(() => {})
-  .finally(updateSoundIcon);
+// The video doesn't autoplay on load — it waits for the envelope gate's
+// "inviteOpened" event, which only fires from a real click, so it's the
+// one place a video is actually allowed to start unmuted.
+document.addEventListener(
+  "inviteOpened",
+  () => {
+    heroVideo.muted = false;
+    heroVideo
+      .play()
+      .catch(() => {})
+      .finally(updateSoundIcon);
+  },
+  { once: true }
+);
 
+updateSoundIcon();
 updatePlayIcon();
 
 // The 'play'/'pause' events are the source of truth for the icon — they

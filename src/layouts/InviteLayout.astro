@@ -1,4 +1,6 @@
 ---
+import EnvelopeGate from "../components/EnvelopeGate.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -9,6 +11,7 @@ interface Props {
   ogVideoWidth?: number;
   ogVideoHeight?: number;
   favicon: string;
+  sealImage: string;
 }
 
 const {
@@ -21,6 +24,7 @@ const {
   ogVideoWidth = 720,
   ogVideoHeight = 1280,
   favicon,
+  sealImage,
 } = Astro.props;
 
 // BASE_URL can end with a slash ("/" in dev) or not ("/WeddingInvite" in
@@ -29,7 +33,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="envelope-active">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -60,11 +64,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     />
     <link rel="stylesheet" href={`${base}/assets/hero.css`} />
   </head>
-  <body>
+  <body class="envelope-active">
+    <EnvelopeGate sealImage={sealImage} />
+
     <div class="page">
       <slot />
     </div>
 
+    <script is:inline src={`${base}/assets/envelope.js`}></script>
     <script is:inline src={`${base}/assets/hero.js`}></script>
     <script is:inline src={`${base}/assets/rsvp.js`}></script>
   </body>

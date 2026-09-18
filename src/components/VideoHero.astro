@@ -9,7 +9,7 @@ const { videoDesktop, videoMobile, poster } = Astro.props;
 ---
 
 <section class="video-panel" id="cover">
-  <video id="heroVideo" autoplay loop playsinline poster={poster}>
+  <video id="heroVideo" loop playsinline poster={poster}>
     <source type="video/mp4" media="(min-width: 901px)" src={videoDesktop} />
     <source type="video/mp4" src={videoMobile} />
   </video>

@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "astro dev",
-    "dev": "astro dev",
+    "start": "astro dev --host",
+    "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview"
   },

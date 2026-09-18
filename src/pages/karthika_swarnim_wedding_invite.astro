@@ -16,6 +16,7 @@ const videoBase =
   ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-2,w-1080`}
   ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac`}
   favicon="favicon-ks.ico"
+  sealImage="seal-ks.svg"
 >
   <VideoHero
     videoDesktop={`${videoBase}?tr=w-1080,q-80,f-auto`}
@@ -30,6 +31,12 @@ const videoBase =
       date="6th December"
       venue="Thiruvananthapuram (Trivandrum)"
     />
-    <RsvpForm />
+    <RsvpForm
+      formAction="https://docs.google.com/forms/d/e/1FAIpQLScUBejT9DEn5-8QC6GIHDfzw19M6rDWfdhg14HkW11pMFXBsA/formResponse"
+      nameField="entry.1612042241"
+      attendingField="entry.1306605310"
+      guestsField="entry.375165308"
+      phoneField="entry.224335856"
+    />
   </section>
 </InviteLayout>
