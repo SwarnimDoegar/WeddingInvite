@@ -6,6 +6,9 @@ import RsvpForm from "../components/RsvpForm.astro";
 
 const videoBase =
   "https://ik.imagekit.io/pwliscd3n/minraws/Dummy/karthika_swarnim_wedding_invite.mp4";
+// Bump whenever a file in public/assets changes, so returning
+// guests get the new stylesheet/scripts instead of a cached copy.
+const VERSION = "1";
 ---
 
 <InviteLayout
@@ -17,6 +20,7 @@ const videoBase =
   ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac`}
   favicon="favicon-ks.ico"
   sealImage="seal-ks.svg"
+  version={VERSION}
 >
   <VideoHero
     videoDesktop={`${videoBase}?tr=w-1080,q-80,f-auto`}
@@ -28,8 +32,9 @@ const videoBase =
       tagline="Together with our families, we invite you to celebrate our wedding"
       partnerA="Karthika"
       partnerB="Swarnim"
-      date="6th December, 2026"
-      venue="Thiruvananthapuram"
+      weddingVenue="Thiruvananthapuram"
+      weddingVenueUrl="https://maps.app.goo.gl/x7rRoYgLqCKp5BkH9"
+      weddingDate="6th December, 2026"
     />
     <RsvpForm
       formAction="https://docs.google.com/forms/d/e/1FAIpQLScUBejT9DEn5-8QC6GIHDfzw19M6rDWfdhg14HkW11pMFXBsA/formResponse"

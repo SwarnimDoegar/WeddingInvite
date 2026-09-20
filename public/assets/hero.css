@@ -203,19 +203,66 @@ body {
   opacity: 0.75;
 }
 
-.hero__date {
-  font-size: clamp(0.95rem, 2.4vw, 1.15rem);
-  letter-spacing: 0.08em;
-  font-weight: 400;
-  color: var(--ivory);
-}
-
 .hero__venue {
-  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
   letter-spacing: 0.06em;
   color: var(--gold-soft);
   margin-top: 0.35rem;
   font-weight: 300;
+}
+
+/* Two events need a clear gap between them, otherwise the space separating
+   one event from the next matches the space inside a single event and the
+   two blocks read as one run of text. */
+.hero__venue + .hero__venue {
+  margin-top: 1.9rem;
+}
+
+.hero__venue-label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 0.3rem;
+}
+
+/* Sits above its venue, and carries the visual weight the standalone date
+   line used to — it's the only date on the page now. */
+.hero__venue-date {
+  display: block;
+  font-size: clamp(1.25rem, 3.2vw, 1.6rem);
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 0.35rem;
+}
+
+/* Underlined rather than just coloured: the surrounding text is already
+   gold, so colour alone wouldn't read as a link. */
+.hero__venue-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.45);
+  padding-bottom: 2px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Sized in em so it tracks the venue text rather than needing its own
+   breakpoints, and nudged onto the optical baseline. */
+.hero__venue-icon {
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 0.4em;
+  vertical-align: -0.06em;
+}
+
+.hero__venue-link:hover,
+.hero__venue-link:focus-visible {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
 }
 
 /* ---------- RSVP panel ---------- */

@@ -3,11 +3,45 @@ interface Props {
   tagline: string;
   partnerA: string;
   partnerB: string;
-  date: string;
-  venue: string;
+  weddingVenue?: string;
+  weddingVenueUrl?: string;
+  weddingDate?: string;
+  receptionVenue?: string;
+  receptionVenueUrl?: string;
+  receptionDate?: string;
 }
 
-const { tagline, partnerA, partnerB, date, venue } = Astro.props;
+const {
+  tagline,
+  partnerA,
+  partnerB,
+  weddingVenue,
+  weddingVenueUrl,
+  weddingDate,
+  receptionVenue,
+  receptionVenueUrl,
+  receptionDate,
+} = Astro.props;
+
+// A venue only appears when it has both a name and a map link — a name with
+// no link would render as dead text, and a link with no name has nothing to
+// label it. Pages that don't host an event simply leave its pair out. The
+// date rides along with its venue but isn't part of that gate: an event can
+// legitimately have a place but no date fixed yet.
+const venues = [
+  {
+    label: "Wedding",
+    name: weddingVenue,
+    url: weddingVenueUrl,
+    date: weddingDate,
+  },
+  {
+    label: "Reception",
+    name: receptionVenue,
+    url: receptionVenueUrl,
+    date: receptionDate,
+  },
+].filter((v) => v.name && v.url);
 ---
 
 <div class="hero__content">
@@ -18,6 +52,40 @@ const { tagline, partnerA, partnerB, date, venue } = Astro.props;
     <span>{partnerB}</span>
   </h1>
   <div class="hero__divider"></div>
-  <p class="hero__date">{date}</p>
-  <p class="hero__venue">{venue}</p>
+  {
+    venues.map((venue) => (
+      <p class="hero__venue">
+        {/* The label only earns its place when there are two venues to tell
+            apart; on a single-venue page it just restates the heading. */}
+        {venues.length > 1 && (
+          <span class="hero__venue-label">{venue.label}</span>
+        )}
+        {venue.date && <span class="hero__venue-date">{venue.date}</span>}
+        <a
+          class="hero__venue-link"
+          href={venue.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {venue.name}
+          {/* Decorative: the link text already names the venue, so the icon
+              is hidden from screen readers rather than read as "graphic". */}
+          <svg
+            class="hero__venue-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M14 4h6v6" />
+            <path d="M20 4l-8.5 8.5" />
+            <path d="M18 14.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4.5" />
+          </svg>
+        </a>
+      </p>
+    ))
+  }
 </div>
