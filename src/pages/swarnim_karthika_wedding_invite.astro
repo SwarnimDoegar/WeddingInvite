@@ -7,8 +7,9 @@ import RsvpForm from "../components/RsvpForm.astro";
 // TODO: replace with groom-side wedding video/thumbnail once uploaded to ImageKit
 const videoBase =
   "https://ik.imagekit.io/pwliscd3n/minraws/Dummy/swarnim_karthika_wedding_invite.mp4";
-// Bump whenever a file in public/assets changes, so returning
-// guests get the new stylesheet/scripts instead of a cached copy.
+// Bump after re-uploading a video at the same ImageKit path. The URL is
+// otherwise identical, so the CDN — and WhatsApp, which caches a link's
+// preview on first share — would keep serving the old cut.
 const VERSION = "1";
 ---
 
@@ -17,16 +18,15 @@ const VERSION = "1";
   description="TODO: groom-side wedding invite description (families, date, venue)."
   ogTitle="Swarnim & Karthika's Wedding"
   ogDescription="TODO: groom-side wedding invite description"
-  ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-2,w-1080`}
-  ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac`}
+  ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-2,w-1080&v=${VERSION}`}
+  ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac&v=${VERSION}`}
   favicon="favicon-sk.ico"
   sealImage="seal-sk.svg"
-  version={VERSION}
 >
   <VideoHero
-    videoDesktop={`${videoBase}?tr=w-1080,q-80,f-auto`}
-    videoMobile={`${videoBase}?tr=w-720,q-75,f-auto`}
-    poster={`${videoBase}/ik-thumbnail.jpg?tr=so-1,w-1080`}
+    videoDesktop={`${videoBase}?tr=w-1080,q-80,f-auto&v=${VERSION}`}
+    videoMobile={`${videoBase}?tr=w-720,q-75,f-auto&v=${VERSION}`}
+    poster={`${videoBase}/ik-thumbnail.jpg?tr=so-1,w-1080&v=${VERSION}`}
   />
   <section class="rsvp-panel" id="rsvp">
     <CoupleHeader

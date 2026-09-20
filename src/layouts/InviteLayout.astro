@@ -12,7 +12,6 @@ interface Props {
   ogVideoHeight?: number;
   favicon: string;
   sealImage: string;
-  version: string;
 }
 
 const {
@@ -28,18 +27,13 @@ const {
   ogVideoHeight = 1920,
   favicon,
   sealImage,
-  version,
 } = Astro.props;
 
 // BASE_URL can end with a slash ("/" in dev) or not if a base path is ever
 // configured again, so strip any trailing slash before joining.
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-// Cache buster. These files keep their names across deploys, so without a
-// changing URL a browser (or GitHub's CDN) will happily serve a months-old
-// stylesheet to someone who already opened the invite. Bump VERSION on the
-// page whenever an asset changes.
-const asset = (file: string) => `${base}/assets/${file}?v=${version}`;
+const asset = (file: string) => `${base}/assets/${file}`;
 ---
 
 <!doctype html>
