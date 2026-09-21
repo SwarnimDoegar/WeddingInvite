@@ -9,6 +9,9 @@ interface Props {
   receptionVenue?: string;
   receptionVenueUrl?: string;
   receptionDate?: string;
+  stayVenue?: string;
+  stayVenueUrl?: string;
+  stayDate?: string;
 }
 
 const {
@@ -21,6 +24,9 @@ const {
   receptionVenue,
   receptionVenueUrl,
   receptionDate,
+  stayVenue,
+  stayVenueUrl,
+  stayDate,
 } = Astro.props;
 
 // A venue only appears when it has both a name and a map link — a name with
@@ -34,6 +40,12 @@ const venues = [
     name: weddingVenue,
     url: weddingVenueUrl,
     date: weddingDate,
+  },
+  {
+    label: "Wedding Stay",
+    name: stayVenue,
+    url: stayVenueUrl,
+    date: stayDate,
   },
   {
     label: "Reception",
