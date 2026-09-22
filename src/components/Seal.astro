@@ -1,0 +1,20 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+
+interface Props {
+  sealImage: string;
+  class?: string;
+}
+
+const { sealImage, class: className } = Astro.props;
+
+// Inlined at build time (rather than loaded via <img>) so the seal is real
+// markup — no extra request, and it can be styled with CSS. It appears in
+// two places now, the envelope gate and the video loader, so the read and
+// the wrapper live here rather than being duplicated.
+const sealSvgPath = path.join(process.cwd(), "public", "assets", sealImage);
+const sealSvg = fs.readFileSync(sealSvgPath, "utf-8");
+---
+
+<div class={className} set:html={sealSvg} />

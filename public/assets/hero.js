@@ -34,6 +34,29 @@ function updatePlayIcon() {
   );
 }
 
+// The loader covers the panel until the video can actually play. Hooked to
+// 'canplay' (readyState 3) rather than 'loadeddata' (2), since a single
+// decoded frame isn't playback — clearing at 2 shows a frozen image that
+// then stalls. The readyState check below covers the race where the video
+// is already buffered by the time this script runs, in which case the
+// event has already fired and would never arrive.
+const videoLoader = document.getElementById("videoLoader");
+
+function hideVideoLoader() {
+  if (videoLoader) videoLoader.classList.add("is-hidden");
+}
+
+if (videoLoader) {
+  if (heroVideo.readyState >= 3) {
+    hideVideoLoader();
+  } else {
+    heroVideo.addEventListener("canplay", hideVideoLoader, { once: true });
+    // A video that fails outright would otherwise spin forever, leaving the
+    // page looking permanently stuck rather than merely broken.
+    heroVideo.addEventListener("error", hideVideoLoader, { once: true });
+  }
+}
+
 // The video doesn't autoplay on load — it waits for the envelope gate's
 // "inviteOpened" event, which only fires from a real click, so it's the
 // one place a video is actually allowed to start unmuted.

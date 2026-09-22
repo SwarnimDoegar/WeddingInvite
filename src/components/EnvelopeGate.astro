@@ -1,17 +1,11 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
+import Seal from "./Seal.astro";
 
 interface Props {
   sealImage: string;
 }
 
 const { sealImage } = Astro.props;
-
-// Inlined at build time (rather than loaded via <img>) so the seal is real
-// markup — no extra request, and it can be styled with CSS if needed.
-const sealSvgPath = path.join(process.cwd(), "public", "assets", sealImage);
-const sealSvg = fs.readFileSync(sealSvgPath, "utf-8");
 ---
 
 <div class="envelope-gate" id="envelopeGate">
@@ -19,7 +13,7 @@ const sealSvg = fs.readFileSync(sealSvgPath, "utf-8");
     <span class="envelope__body"></span>
     <span class="envelope__flap-wrap">
       <span class="envelope__flap"></span>
-      <div class="envelope__seal" set:html={sealSvg} />
+      <Seal sealImage={sealImage} class="envelope__seal" />
     </span>
     <!-- Full-size overlay button: makes the whole envelope clickable with
          real button semantics/keyboard support, while keeping the animated

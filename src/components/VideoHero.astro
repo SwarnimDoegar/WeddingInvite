@@ -1,11 +1,14 @@
 ---
+import Seal from "./Seal.astro";
+
 interface Props {
   videoDesktop: string;
   videoMobile: string;
   poster: string;
+  sealImage: string;
 }
 
-const { videoDesktop, videoMobile, poster } = Astro.props;
+const { videoDesktop, videoMobile, poster, sealImage } = Astro.props;
 ---
 
 <section class="video-panel" id="cover">
@@ -13,6 +16,21 @@ const { videoDesktop, videoMobile, poster } = Astro.props;
     <source type="video/mp4" media="(min-width: 901px)" src={videoDesktop} />
     <source type="video/mp4" src={videoMobile} />
   </video>
+  <!-- Covers the panel until the video has enough data to play. Starts
+       visible in the markup rather than being switched on by script, so a
+       slow connection never shows an empty panel first. -->
+  <div class="video-loader" id="videoLoader">
+    <!-- Two faces rather than one flat seal: a single face rotated past 90°
+         shows the monogram mirrored. A real back face, pre-rotated 180°,
+         reads correctly the whole way round. -->
+    <div class="video-loader__coin">
+      <Seal sealImage={sealImage} class="video-loader__face" />
+      <Seal
+        sealImage={sealImage}
+        class="video-loader__face video-loader__face--back"
+      />
+    </div>
+  </div>
   <div class="video-controls">
     <button
       class="control-btn"
