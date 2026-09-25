@@ -17,12 +17,28 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      invite-paths: ${{ steps.invite-paths.outputs.paths }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build and upload Astro site
         uses: withastro/action@v6
+
+      - name: Collect invite page paths
+        id: invite-paths
+        run: |
+          # Read the paths off the build rather than hardcoding them, so a new
+          # invite page is listed the moment it exists. Only directories with
+          # an index.html count, which excludes dist/assets and dist/CNAME.
+          paths=""
+          if [ -d dist ]; then
+            paths=$(find dist -mindepth 2 -maxdepth 2 -name index.html \
+              | sed 's|^dist/||; s|/index.html$||' | sort | paste -sd, -)
+          fi
+          echo "paths=$paths" >> "$GITHUB_OUTPUT"
+          echo "Found invite pages: ${paths:-none}"
 
   deploy:
     needs: build
@@ -34,3 +50,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Print invite page URLs
+        env:
+          # page_url follows the custom domain once one is configured, so the
+          # links printed here are the ones actually worth sharing.
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          INVITE_PATHS: ${{ needs.build.outputs.invite-paths }}
+        run: |
+          base="${PAGE_URL%/}"
+          {
+            echo "## Invite page URLs"
+            echo
+            for path in ${INVITE_PATHS//,/ }; do
+              echo "- $base/$path"
+            done
+          } | tee -a "$GITHUB_STEP_SUMMARY"
