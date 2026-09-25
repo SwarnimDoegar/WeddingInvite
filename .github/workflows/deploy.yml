@@ -57,12 +57,17 @@ jobs:
           # links printed here are the ones actually worth sharing.
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
           INVITE_PATHS: ${{ needs.build.outputs.invite-paths }}
+          # WhatsApp caches a link preview against the exact URL and offers no
+          # way to purge it, so each deploy hands out a URL it has never seen.
+          # run_number rather than the SHA: it only ever goes up, so it's easy
+          # to tell at a glance which link is the newer one.
+          VERSION: ${{ github.run_number }}
         run: |
           base="${PAGE_URL%/}"
           {
             echo "## Invite page URLs"
             echo
             for path in ${INVITE_PATHS//,/ }; do
-              echo "- $base/$path"
+              echo "- $base/$path?v=$VERSION"
             done
           } | tee -a "$GITHUB_STEP_SUMMARY"
