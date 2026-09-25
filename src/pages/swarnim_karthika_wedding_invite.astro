@@ -7,16 +7,16 @@ import RsvpForm from "../components/RsvpForm.astro";
 const videoBase =
   "https://ik.imagekit.io/pwliscd3n/minraws/Dummy/swarnim_karthika_wedding_invite.mp4";
 // Bump after re-uploading a video at the same ImageKit path. The URL is
-// otherwise identical, so the CDN — and WhatsApp, which caches a link's
-// preview on first share — would keep serving the old cut.
-const VERSION = "2";
+// otherwise identical, so the CDN - and WhatsApp, which caches a link's
+// preview on first share - would keep serving the old cut.
+const VERSION = "3";
 ---
 
 <InviteLayout
   title="Swarnim & Karthika | 6th December 2026"
-  description="Together with our families, we invite you to celebrate the wedding of Swarnim & Karthika — 6th December 2026, Thiruvananthapuram."
+  description="We invite you to celebrate the wedding of Swarnim & Karthika - 6th December 2026, Thiruvananthapuram."
   ogTitle="Swarnim & Karthika's Wedding Invitation"
-  ogDescription="Together with our families, we invite you to celebrate our wedding — 6th December 2026, Thiruvananthapuram"
+  ogDescription="We invite you to celebrate our son's wedding - 6th December 2026, Thiruvananthapuram"
   ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-2,w-1080&v=${VERSION}`}
   ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac&v=${VERSION}`}
   favicon="favicon-sk.ico"
@@ -30,9 +30,10 @@ const VERSION = "2";
   />
   <section class="rsvp-panel" id="rsvp">
     <CoupleHeader
-      tagline="Together with our families, we invite you to celebrate our wedding"
+      tagline="Naresh and Vijay invite you to celebrate the wedding of their beloved son"
       partnerA="Swarnim"
       partnerB="Karthika"
+      partnerJoiner="with"
       weddingVenue="Thiruvananthapuram"
       weddingVenueUrl="https://maps.app.goo.gl/x7rRoYgLqCKp5BkH9"
       weddingDate="6th December, 2026"
@@ -40,7 +41,7 @@ const VERSION = "2";
       receptionVenueUrl="https://maps.app.goo.gl/SxewuuaCzsfhE5539"
       receptionDate="13th December, 2026"
       stayVenue="Archrose Villa"
-      stayVenueUrl="https://maps.app.goo.gl/wXuR8MCwVuc5v66r9"
+      stayVenueUrl="https://www.google.com/maps/dir//Archrose+Villa,+19+A,+Mythri+Nagar,+Kazhakkoottam,+Thiruvananthapuram,+Keralam+695582/@8.564377,76.869108,13z/data=!4m20!1m10!3m9!1s0x3b05bf14371f1b65:0x36ff87218aff53bb!2sArchrose+Villa!5m2!4m1!1i2!8m2!3d8.5633589!4d76.8721982!16s%2Fg%2F11nsyth6zk!4m8!1m0!1m5!1m1!1s0x3b05bf14371f1b65:0x36ff87218aff53bb!2m2!1d76.8721874!2d8.5634007!3e0?hl=en&entry=ttu&g_ep=EgoyMDI2MDkyMi4wIKXMDSoASAFQAw%3D%3D"
     />
     <RsvpForm
       formAction="https://docs.google.com/forms/d/e/1FAIpQLScsnZi9OQTCS2fsgEnhJH_GdyoHPJOyl41y1rLPrRFcLWCriQ/formResponse"

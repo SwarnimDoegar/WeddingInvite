@@ -7,16 +7,16 @@ import RsvpForm from "../components/RsvpForm.astro";
 const videoBase =
   "https://ik.imagekit.io/pwliscd3n/minraws/Dummy/swarnim_karthika_reception_invite.mp4";
 // Bump after re-uploading a video at the same ImageKit path. The URL is
-// otherwise identical, so the CDN — and WhatsApp, which caches a link's
-// preview on first share — would keep serving the old cut.
-const VERSION = "2";
+// otherwise identical, so the CDN - and WhatsApp, which caches a link's
+// preview on first share - would keep serving the old cut.
+const VERSION = "3";
 ---
 
 <InviteLayout
   title="Swarnim & Karthika | Reception, 13th December 2026"
-  description="Together with our families, we invite you to celebrate the wedding reception of Swarnim & Karthika — 13th December 2026, Zirakpur."
+  description="We invite you to celebrate the wedding reception of Swarnim & Karthika - 13th December 2026, Zirakpur."
   ogTitle="Swarnim & Karthika's Reception"
-  ogDescription="Together with our families, we invite you to an evening of celebration — 13th December 2026, Zirakpur"
+  ogDescription="Naresh and Vijay invite you to bless the newlyweds - 13th December 2026, Zirakpur"
   ogImage={`${videoBase}/ik-thumbnail.jpg?tr=so-2,w-1080&v=${VERSION}`}
   ogVideo={`${videoBase}?tr=so-0,du-15,w-1080,q-80,f-mp4,vc-h264,ac-aac&v=${VERSION}`}
   favicon="favicon-sk.ico"
@@ -30,7 +30,7 @@ const VERSION = "2";
   />
   <section class="rsvp-panel" id="rsvp">
     <CoupleHeader
-      tagline="Together with our families, we invite you to an evening of celebration"
+      tagline="We invite you to an evening of celebration, for the reception of"
       partnerA="Swarnim"
       partnerB="Karthika"
       receptionVenue="Zirakpur"
